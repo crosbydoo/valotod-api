@@ -18,5 +18,8 @@ app.use(express.json())
 app.use("/api/", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/valo", valoRoute);
+app.get('/', (req,res)=> {
+    res.send('API Valotod')
+});
 
 app.listen(process.env.PORT || 3002, console.log(`Server Started at ${process.env.PORT}!`))
