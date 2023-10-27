@@ -9,6 +9,7 @@ module.exports = {
         const newUser = new User({
             username: req.body.username,
             email: req.body.email,
+            fullname: req.body.fullname,
             password: CryptoJS.AES.encrypt(req.body.password, process.env.SECRET_KEY).toString(),
         });
 
@@ -23,7 +24,7 @@ module.exports = {
     //Login User
     loginUser: async (req, res) => {
         try{
-            const user = await User.findOne({email: req.body.email});
+            const user = await User.findOne({username: req.body.username});
             !user && res.status(401).json("Wrong login details");
 
             const decryptedpass = CryptoJS.AES.decrypt(user.password, process.env.SECRET_KEY);

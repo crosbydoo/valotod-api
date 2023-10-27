@@ -16,8 +16,9 @@ mongoose.connect(mongoString)
 
 app.use(express.json())
 app.use("/api/", authRoute);
-app.use("/api/users", userRoute);
+app.use("/api/users/", userRoute);
 app.use("/api/valo", valoRoute);
+
 app.get('/', (req,res)=> {
     res.send('API Valotod')
 });

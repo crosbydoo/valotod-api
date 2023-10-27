@@ -36,7 +36,7 @@ module.exports = {
     getUser: async (req, res) => {
         try {
             const user =  await User.findById(req.params.id)
-            const {password, __v, createdAt, ...userData} = user._doc
+            const {password, __v, ...userData} = user._doc
            
             res.status(200).json(userData)
         } catch (error) {
