@@ -4,7 +4,9 @@ const axios = require('axios');
 
 const API_VALO_URL = process.env.URL_VALO;
 
-router.get('/:endpointName', async (req, res) => {
+const { verifyAndAuthorization, verifyToken, verifyAndAdmin } = require("../middleware/auth_middleware");
+
+router.get('/:endpointName', verifyToken, async (req, res) => {
     const { endpointName } = req.params;
 
     try {
@@ -18,7 +20,7 @@ router.get('/:endpointName', async (req, res) => {
     }
 });
 
-router.get('/:endpointName/:uuid', async (req, res) => {
+router.get('/:endpointName/:uuid', verifyToken, async (req, res) => {
     const { endpointName, uuid } = req.params;
     try {
        
